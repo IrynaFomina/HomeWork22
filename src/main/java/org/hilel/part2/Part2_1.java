@@ -6,17 +6,11 @@ package org.hilel.part2;
 
 import java.util.Random;
 
-public class Part2 {
+public class Part2_1 {
     public static void main(String[] args) {
         System.out.println(Thread.currentThread().getName() + " started ");
-        Thread thread = new Thread(()-> {
-            System.out.println(Thread.currentThread().getName() + " started ");
-            try {
-                Thread.sleep(10 * 1000);
-            } catch (InterruptedException e) {
-                System.out.println("Thread " + Thread.currentThread().getName() + " has been interrupted");
-            }
-        });
+
+        Thread thread = new Thread(new BThread());
         int random = new Random().nextInt(10);
         thread.start();
         try {
@@ -30,3 +24,13 @@ public class Part2 {
     }
 }
 
+class BThread implements Runnable {
+    public void run() {
+        System.out.println(Thread.currentThread().getName() + " started ");
+        try {
+            Thread.sleep(10 * 1000);
+        } catch (InterruptedException e) {
+            System.out.println("Thread " + Thread.currentThread().getName() + " has been interrupted");
+        }
+    }
+}
