@@ -13,6 +13,7 @@ public class Part1 {
             thread.join();
             System.out.println(thread.getName() + " thread finished");
         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
             System.out.println("Thread "+ Thread.currentThread().getName()+ " has been interrupted");
         }
     }
@@ -30,6 +31,7 @@ class SecondThread extends Thread{
             }
         }
         catch (InterruptedException e){
+            Thread.currentThread().interrupt();
             System.out.println("Thread "+ getName()+ " has been interrupted");
         }
     }
